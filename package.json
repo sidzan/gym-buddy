@@ -1,0 +1,113 @@
+{
+  "name": "gym-app-ai",
+  "version": "0.1.0",
+  "private": true,
+  "prisma": {
+    "schema": "./prisma/schema.prisma"
+  },
+  "scripts": {
+    "seed": "ts-node prisma/seed.ts",
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "lint": "next lint && tsc --noEmit",
+    "e2e": "playwright test",
+    "e2e-watch": "PWTEST_WATCH=1 playwright test",
+    "e2e-ui": "playwright test --ui",
+    "prepare": "husky",
+    "prisma-generate": "prisma generate",
+    "postinstall": "npm run prisma-generate"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.592.0",
+    "@aws-sdk/s3-presigned-post": "^3.592.0",
+    "@aws-sdk/s3-request-presigner": "^3.592.0",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.0",
+    "@hookform/resolvers": "^3.3.4",
+    "@mui/icons-material": "^5.15.12",
+    "@mui/material": "^5.15.11",
+    "@mui/x-date-pickers": "^7.1.1",
+    "@prisma/client": "^5.14.0",
+    "@react-pdf/renderer": "^3.4.4",
+    "@tanstack/react-query": "^5.24.2",
+    "@trpc/client": "^11.0.0-next-beta.318",
+    "@trpc/next": "^11.0.0-next-beta.318",
+    "@trpc/react-query": "^11.0.0-next-beta.318",
+    "@trpc/server": "^11.0.0-next-beta.318",
+    "aws-amplify": "^6.0.23",
+    "aws-jwt-verify": "^4.0.1",
+    "axios": "^1.6.7",
+    "bahttext": "^2.3.0",
+    "clsx": "^2.1.0",
+    "date-fns": "^3.3.1",
+    "dotenv": "^16.4.5",
+    "next": "14.2.3",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-hook-form": "^7.51.0",
+    "react-number-format": "^5.3.4",
+    "ts-node": "^10.9.2",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.42.1",
+    "@types/node": "^20.14.8",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@typescript-eslint/eslint-plugin": "^6.17.0",
+    "@typescript-eslint/parser": "^6.17.0",
+    "autoprefixer": "^10.0.1",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^14.1.1",
+    "eslint-config-prettier": "^9.1.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "postcss": "^8",
+    "prettier": "^3.2.5",
+    "prettier-plugin-tailwindcss": "^0.5.11",
+    "prisma": "^5.14.0",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "prettier": {
+    "printWidth": 100,
+    "plugins": [
+      "prettier-plugin-tailwindcss"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended-type-checked",
+      "prettier",
+      "next"
+    ],
+    "ignorePatterns": [
+      "*.js",
+      "*.cjs"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "project": true
+    },
+    "overrides": [
+      {
+        "files": [
+          "e2e/**/*.ts"
+        ],
+        "rules": {
+          "no-empty-pattern": "off"
+        }
+      }
+    ]
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
+  }
+}

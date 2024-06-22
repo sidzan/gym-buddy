@@ -1,0 +1,39 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["relationJoins"]
+}
+
+datasource db {
+  provider     = "postgresql"
+  url          = env("DATABASE_URL")
+  relationMode = "foreignKeys"
+}
+
+model User {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String?
+}
+
+enum MuscleGroup {
+  QUADRICEPS
+  HAMSTRINGS
+  CHEST
+  BACK
+  SHOULDERS
+  BICEPS
+  TRICEPS
+  GLUTES
+  FOREARMS
+  TRAPS
+  CALVES
+}
+
+model Exercises {
+  id                   Int           @id @default(autoincrement())
+  code                 String
+  name                 String
+  primaryMuscleGroup   MuscleGroup[]
+  secondaryMuscleGroup MuscleGroup[]
+  isCompound           Boolean       @default(false)
+}
